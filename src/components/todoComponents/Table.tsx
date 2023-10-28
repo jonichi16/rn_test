@@ -10,7 +10,7 @@ interface TableProps {
 const Table = ({todos}: TableProps) => {
   return (
     <View style={styles.table}>
-      <Row col1={'Status'} col2={'Title'} isLast={todos.length === 0} />
+      <Row col1={'Completed?'} col2={'Title'} isLast={todos.length === 0} />
       {todos.length === 0 ? (
         <Text style={styles.empty}>Wow! Such emptiness!</Text>
       ) : (

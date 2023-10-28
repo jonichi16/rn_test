@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {StyleSheet, Switch, Text, View} from 'react-native';
+import React, {useState} from 'react';
 
 interface RowProps {
   col1?: string;
@@ -10,6 +10,8 @@ interface RowProps {
 }
 
 const Row = ({col1, col2, isComplete, title, isLast}: RowProps) => {
+  const [isEnabled, setIsEnabled] = useState<boolean>(isComplete!);
+
   if (col1 && col2) {
     return (
       <View
@@ -34,10 +36,22 @@ const Row = ({col1, col2, isComplete, title, isLast}: RowProps) => {
         styles.row,
         isLast ? styles.borderBottom : styles.borderNoBottom,
       ]}>
-      <Text style={[styles.isComplete, styles.center, styles.text]}>
-        {isComplete!.toString()}
+      <Switch
+        style={[styles.isComplete]}
+        trackColor={{false: '#767577', true: '#81b0ff'}}
+        thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={() => setIsEnabled(previousState => !previousState)}
+        value={isEnabled}
+      />
+      <Text
+        style={[
+          styles.title,
+          styles.center,
+          isEnabled ? styles.underlined : styles.text,
+        ]}>
+        {title}
       </Text>
-      <Text style={[styles.title, styles.center, styles.text]}>{title}</Text>
     </View>
   );
 };
@@ -68,14 +82,17 @@ const styles = StyleSheet.create({
   text: {
     color: 'black',
   },
+  underlined: {
+    textDecorationLine: 'line-through',
+  },
   bold: {
     fontWeight: '700',
     fontSize: 16,
   },
   isComplete: {
-    flex: 2,
+    flex: 3,
   },
   title: {
-    flex: 8,
+    flex: 7,
   },
 });
