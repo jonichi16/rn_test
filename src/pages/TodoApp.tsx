@@ -12,6 +12,7 @@ import {v4 as uuidv4} from 'uuid';
 
 import {Todo} from '../models/todoModels/Todo';
 import {todoData} from '../data/todoData';
+import Table from '../components/todoComponents/Table';
 
 const TodoApp = () => {
   const [input, setInput] = useState<string>('');
@@ -55,6 +56,7 @@ const TodoApp = () => {
         ]}>
         <Text style={styles.btnText}>Add Todo</Text>
       </Pressable>
+      <Table todos={todos} />
     </View>
   );
 };
