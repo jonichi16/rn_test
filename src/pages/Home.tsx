@@ -19,7 +19,7 @@ const Home = ({
   return (
     <View style={styles.container}>
       <Text style={styles.h1}>Welcome to SandBox</Text>
-      <Text style={styles.h2}>Enjoy differents apps</Text>
+      <Text style={styles.h2}>Enjoy different apps</Text>
       <Button
         title="Go to Todo App"
         onPress={() => navigation.navigate('Todo App')}
