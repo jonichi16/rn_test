@@ -1,10 +1,8 @@
-/**
- * @format
- */
-
-import {Button, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Pressable} from 'react-native';
 import React from 'react';
 import {NavigationProp} from '@react-navigation/native';
+
+import {Colors, Typography} from '../styles';
 
 type RootStackParamList = {
   Home: undefined;
@@ -18,12 +16,19 @@ const Home = ({
 }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.h1}>Welcome to SandBox</Text>
-      <Text style={styles.h2}>Enjoy different apps</Text>
-      <Button
-        title="Go to Todo App"
+      <Text style={styles.header}>Welcome to SandBox</Text>
+      <Text style={styles.subheader}>Enjoy different apps</Text>
+      <Pressable
         onPress={() => navigation.navigate('Todo App')}
-      />
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed ? '#1e293b' : '#0f172a',
+            transform: pressed ? [{scale: 0.98}] : [{scale: 1}],
+          },
+          styles.btn,
+        ]}>
+        <Text style={styles.btnText}>Go to Todo App</Text>
+      </Pressable>
     </View>
   );
 };
@@ -36,14 +41,24 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  h1: {
-    fontSize: 32,
-    fontWeight: '700',
-    color: 'black',
+  header: {
+    ...Typography.header.xxl,
+    color: Colors.primary.dark,
   },
-  h2: {
-    fontSize: 20,
+  subheader: {
+    ...Typography.header.lg,
+    color: Colors.primary.dark,
+  },
+  btn: {
+    width: '50%',
+    padding: 8,
+    borderRadius: 4,
+    marginVertical: 12,
+  },
+  btnText: {
+    color: '#f8fafc',
+    fontSize: 16,
     fontWeight: '700',
-    color: 'black',
+    textAlign: 'center',
   },
 });
