@@ -22,7 +22,9 @@ const Home = ({
         onPress={() => navigation.navigate('Todo App')}
         style={({pressed}) => [
           {
-            backgroundColor: pressed ? '#1e293b' : '#0f172a',
+            backgroundColor: pressed
+              ? Colors.primary.p800
+              : Colors.primary.p900,
             transform: pressed ? [{scale: 0.98}] : [{scale: 1}],
           },
           styles.btn,

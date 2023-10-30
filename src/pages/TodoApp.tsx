@@ -13,6 +13,7 @@ import {v4 as uuidv4} from 'uuid';
 import {Todo} from '../models/todoModels/Todo';
 import {todoData} from '../data/todoData';
 import Table from '../components/todoComponents/Table';
+import {Colors} from '../styles';
 
 const TodoApp = () => {
   const [input, setInput] = useState<string>('');
@@ -49,7 +50,9 @@ const TodoApp = () => {
         onPress={addTodo}
         style={({pressed}) => [
           {
-            backgroundColor: pressed ? '#1e293b' : '#0f172a',
+            backgroundColor: pressed
+              ? Colors.primary.p800
+              : Colors.primary.p900,
             transform: pressed ? [{scale: 0.98}] : [{scale: 1}],
           },
           styles.btn,
