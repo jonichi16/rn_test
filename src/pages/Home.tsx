@@ -1,25 +1,19 @@
 import {StyleSheet, Text, View, Pressable} from 'react-native';
 import React from 'react';
-import {NavigationProp} from '@react-navigation/native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
+import {RootStackParamList} from '../../App';
 import {Colors, Typography} from '../styles';
 
-type RootStackParamList = {
-  Home: undefined;
-  'Todo App': undefined;
-};
+type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
-const Home = ({
-  navigation,
-}: {
-  navigation: NavigationProp<RootStackParamList, 'Home'>;
-}) => {
+const Home = ({navigation}: HomeProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Welcome to SandBox</Text>
       <Text style={styles.subheader}>Enjoy different apps</Text>
       <Pressable
-        onPress={() => navigation.navigate('Todo App')}
+        onPress={() => navigation.navigate('Todo')}
         style={({pressed}) => [
           {
             backgroundColor: pressed
