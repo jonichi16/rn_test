@@ -9,6 +9,12 @@ const findAll = (): Todo[] => {
   return todoData;
 };
 
+const findById = (id: string): Todo | undefined => {
+  return todoData.find(todo => {
+    todo.id === id;
+  });
+};
+
 type Body = {
   title: string;
 };
@@ -23,9 +29,19 @@ const create = ({title}: Body) => {
   todoData = [...todoData, newTodo];
 };
 
+const updateStatus = (id: string) => {
+  const todoIndex = todoData.findIndex(todo => todo.id === id);
+
+  if (todoIndex || todoIndex === 0) {
+    todoData[todoIndex].isComplete = !todoData[todoIndex].isComplete;
+  }
+};
+
 const TodoService = {
   findAll,
+  findById,
   create,
+  updateStatus,
 };
 
 export default TodoService;

@@ -18,6 +18,7 @@ const Table = ({todos}: TableProps) => {
           data={todos}
           renderItem={({item, index}) => (
             <Row
+              id={item.id}
               isComplete={item.isComplete}
               title={item.title}
               isLast={index + 1 === todos.length ? true : false}

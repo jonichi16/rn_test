@@ -1,16 +1,23 @@
 import {StyleSheet, Switch, Text, View} from 'react-native';
 import React, {useState} from 'react';
+import TodoService from '../services/todoSerivce';
 
 interface RowProps {
   col1?: string;
   col2?: string;
+  id?: string;
   isComplete?: boolean;
   title?: string;
   isLast: boolean;
 }
 
-const Row = ({col1, col2, isComplete, title, isLast}: RowProps) => {
+const Row = ({col1, col2, id, isComplete, title, isLast}: RowProps) => {
   const [isEnabled, setIsEnabled] = useState<boolean>(isComplete!);
+
+  const updateStatus = () => {
+    TodoService.updateStatus(id!);
+    setIsEnabled(prevState => !prevState);
+  };
 
   if (col1 && col2) {
     return (
@@ -41,7 +48,7 @@ const Row = ({col1, col2, isComplete, title, isLast}: RowProps) => {
         trackColor={{false: '#767577', true: '#81b0ff'}}
         thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
         ios_backgroundColor="#3e3e3e"
-        onValueChange={() => setIsEnabled(previousState => !previousState)}
+        onValueChange={updateStatus}
         value={isEnabled}
       />
       <Text
