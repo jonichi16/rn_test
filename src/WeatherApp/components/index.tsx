@@ -1,8 +1,8 @@
 import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
 import React, {useState} from 'react';
-import {Colors} from '../styles';
-import {Weather} from '../WeatherApp/models/Weather';
-import WeatherComponent from '../WeatherApp/components/WeatherComponent';
+import {Weather} from '../models/Weather';
+import WeatherComponent from './WeatherComponent';
+import {Colors} from '../../styles';
 
 const WeatherApp = () => {
   const [location, setLocation] = useState<string>('');
