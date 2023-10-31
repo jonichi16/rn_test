@@ -25,6 +25,19 @@ const Home = ({navigation}: HomeProps) => {
         ]}>
         <Text style={styles.btnText}>Go to Todo App</Text>
       </Pressable>
+      <Pressable
+        onPress={() => navigation.navigate('Weather')}
+        style={({pressed}) => [
+          {
+            backgroundColor: pressed
+              ? Colors.primary.p800
+              : Colors.primary.p900,
+            transform: pressed ? [{scale: 0.98}] : [{scale: 1}],
+          },
+          styles.btn,
+        ]}>
+        <Text style={styles.btnText}>Go to Weather App</Text>
+      </Pressable>
     </View>
   );
 };
