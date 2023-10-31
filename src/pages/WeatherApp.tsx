@@ -1,12 +1,13 @@
 import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
 import React, {useState} from 'react';
-import {Colors} from '../styles';
+import {Colors, Typography} from '../styles';
 import {Weather} from '../models/weatherModels/Weather';
+import WeatherComponent from '../components/weatherComponents/WeatherComponent';
 
 const WeatherApp = () => {
   const [location, setLocation] = useState<string>('');
   const [weather, setWeather] = useState<Weather | null>(null);
-  const [error, setError] = useState<string>('');
+  const [error, setError] = useState<string>('Please a location');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const getWeather = async () => {
@@ -22,8 +23,8 @@ const WeatherApp = () => {
       }
 
       setWeather({
-        tempCelsius: data.current.temp_c,
-        tempFahrenheit: data.current.temp_f,
+        tempCelsius: `${data.current.temp_c}°C`,
+        tempFahrenheit: `${data.current.temp_f}°F`,
         condition: data.current.condition.text,
         icon: data.current.condition.icon,
         location: `${data.location.name}, ${data.location.country}`,
@@ -37,7 +38,7 @@ const WeatherApp = () => {
 
   if (isLoading) {
     return (
-      <View style={styles.loading}>
+      <View style={styles.center}>
         <Text>Loading...</Text>
       </View>
     );
@@ -64,6 +65,13 @@ const WeatherApp = () => {
         ]}>
         <Text style={styles.btnText}>Get Weather</Text>
       </Pressable>
+      {weather ? (
+        <WeatherComponent weather={weather!} />
+      ) : (
+        <View style={styles.center}>
+          <Text style={styles.error}>{error}</Text>
+        </View>
+      )}
     </View>
   );
 };
@@ -94,9 +102,12 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     textAlign: 'center',
   },
-  loading: {
+  center: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  error: {
+    ...Typography.body.lg,
   },
 });
