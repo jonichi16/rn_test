@@ -1,4 +1,11 @@
-import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
+import {
+  Keyboard,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import React, {useState} from 'react';
 import {Weather} from '../models/Weather';
 import WeatherComponent from './WeatherComponent';
@@ -13,6 +20,8 @@ const WeatherApp = () => {
   const getWeather = async () => {
     const URL = `https://api.weatherapi.com/v1/current.json?key=c8c89f0cbb4e432db7c181806232204&q=${location}/`;
     setIsLoading(true);
+
+    Keyboard.dismiss();
 
     try {
       const response = await fetch(URL, {mode: 'cors'});
