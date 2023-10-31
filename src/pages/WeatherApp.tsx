@@ -7,7 +7,7 @@ import WeatherComponent from '../WeatherApp/components/WeatherComponent';
 const WeatherApp = () => {
   const [location, setLocation] = useState<string>('');
   const [weather, setWeather] = useState<Weather | null>(null);
-  const [error, setError] = useState<string>('Please a location');
+  const [error, setError] = useState<string>('Please enter a location');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const getWeather = async () => {
