@@ -20,15 +20,16 @@ const WeatherApp = () => {
 
       if (data.error) {
         setError(data.error.message);
+        setWeather(null);
+      } else {
+        setWeather({
+          tempCelsius: `${data.current.temp_c}°C`,
+          tempFahrenheit: `${data.current.temp_f}°F`,
+          condition: data.current.condition.text,
+          icon: data.current.condition.icon,
+          location: `${data.location.name}, ${data.location.country}`,
+        });
       }
-
-      setWeather({
-        tempCelsius: `${data.current.temp_c}°C`,
-        tempFahrenheit: `${data.current.temp_f}°F`,
-        condition: data.current.condition.text,
-        icon: data.current.condition.icon,
-        location: `${data.location.name}, ${data.location.country}`,
-      });
     } catch (err) {
       console.log(err);
     } finally {
