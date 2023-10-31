@@ -6,35 +6,31 @@ import {
   Pressable,
   Keyboard,
 } from 'react-native';
-import React, {useState} from 'react';
-import 'react-native-get-random-values';
-import {v4 as uuidv4} from 'uuid';
+import React, {useEffect, useState} from 'react';
 
 import {Todo} from '../models/Todo';
-import {todoData} from '../data/todoData';
 import Table from './Table';
 import {Colors} from '../../styles';
+import TodoService from '../services/todoSerivce';
 
 const TodoApp = () => {
   const [input, setInput] = useState<string>('');
-  const [todos, setTodos] = useState<Todo[]>(todoData);
+  const [todos, setTodos] = useState<Todo[]>([]);
 
   const addTodo = () => {
     if (input) {
-      setTodos(prevState => [
-        ...prevState,
-        {
-          id: uuidv4(),
-          title: input,
-          isComplete: false,
-          date: new Date().toLocaleDateString(),
-        },
-      ]);
+      TodoService.create({title: input});
+      setTodos(TodoService.findAll());
+
       setInput('');
     }
 
     Keyboard.dismiss();
   };
+
+  useEffect(() => {
+    setTodos(TodoService.findAll());
+  }, [todos]);
 
   return (
     <View style={styles.container}>
