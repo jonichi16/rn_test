@@ -3,7 +3,7 @@ import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {RootStackParamList} from '../../App';
-import {Colors, Typography} from '../styles';
+import {Colors, Typography} from '../common/styles';
 
 type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 

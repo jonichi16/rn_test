@@ -9,7 +9,7 @@ import {
 import React, {useState} from 'react';
 import {Weather} from '../models/Weather';
 import WeatherComponent from './WeatherComponent';
-import {Colors} from '../../styles';
+import {Colors} from '../../common/styles';
 
 const WeatherApp = () => {
   const [location, setLocation] = useState<string>('');

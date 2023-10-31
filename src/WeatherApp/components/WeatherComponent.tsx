@@ -1,7 +1,8 @@
 import {StyleSheet, Text, View, Image, Switch} from 'react-native';
 import React, {useState} from 'react';
 import {Weather} from '../models/Weather';
-import {Typography} from '../../styles';
+import {Spacing, Typography} from '../../common/styles';
+import Bounce from '../../common/components/Bounce';
 
 type WeatherProps = {
   weather: Weather | null;
@@ -17,7 +18,12 @@ const WeatherComponent = ({weather, error}: WeatherProps) => {
         <>
           <Text style={styles.location}>{weather.location}</Text>
           <Text style={styles.condition}>{weather.condition}</Text>
-          <Image style={styles.icon} source={{uri: `https:${weather.icon}`}} />
+          <Bounce>
+            <Image
+              style={styles.icon}
+              source={{uri: `https:${weather.icon}`}}
+            />
+          </Bounce>
           {isCelsius ? (
             <Text style={styles.temp}>{weather.tempCelsius}</Text>
           ) : (
@@ -65,6 +71,7 @@ const styles = StyleSheet.create({
   },
   condition: {
     ...Typography.subHeader.lg,
+    marginBottom: Spacing.spacing.xl,
   },
   temp: {
     ...Typography.header.xxxl,

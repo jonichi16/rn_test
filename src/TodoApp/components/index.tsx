@@ -10,7 +10,7 @@ import React, {useEffect, useState} from 'react';
 
 import {Todo} from '../models/Todo';
 import Table from './Table';
-import {Colors} from '../../styles';
+import {Colors} from '../../common/styles';
 import TodoService from '../services/todoSerivce';
 
 const TodoApp = () => {
