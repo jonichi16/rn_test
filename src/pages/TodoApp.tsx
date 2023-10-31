@@ -10,9 +10,9 @@ import React, {useState} from 'react';
 import 'react-native-get-random-values';
 import {v4 as uuidv4} from 'uuid';
 
-import {Todo} from '../models/todoModels/Todo';
-import {todoData} from '../data/todoData';
-import Table from '../components/todoComponents/Table';
+import {Todo} from '../TodoApp/models/Todo';
+import {todoData} from '../TodoApp/data/todoData';
+import Table from '../TodoApp/components/Table';
 import {Colors} from '../styles';
 
 const TodoApp = () => {

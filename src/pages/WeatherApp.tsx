@@ -1,8 +1,8 @@
 import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
 import React, {useState} from 'react';
-import {Colors, Typography} from '../styles';
-import {Weather} from '../models/weatherModels/Weather';
-import WeatherComponent from '../components/weatherComponents/WeatherComponent';
+import {Colors} from '../styles';
+import {Weather} from '../WeatherApp/models/Weather';
+import WeatherComponent from '../WeatherApp/components/WeatherComponent';
 
 const WeatherApp = () => {
   const [location, setLocation] = useState<string>('');
@@ -37,14 +37,6 @@ const WeatherApp = () => {
     }
   };
 
-  if (isLoading) {
-    return (
-      <View style={styles.center}>
-        <Text>Loading...</Text>
-      </View>
-    );
-  }
-
   return (
     <View style={styles.container}>
       <TextInput
@@ -66,12 +58,13 @@ const WeatherApp = () => {
         ]}>
         <Text style={styles.btnText}>Get Weather</Text>
       </Pressable>
-      {weather ? (
-        <WeatherComponent weather={weather!} />
-      ) : (
+
+      {isLoading ? (
         <View style={styles.center}>
-          <Text style={styles.error}>{error}</Text>
+          <Text>Loading...</Text>
         </View>
+      ) : (
+        <WeatherComponent weather={weather} error={error} />
       )}
     </View>
   );
@@ -107,8 +100,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  error: {
-    ...Typography.body.lg,
   },
 });

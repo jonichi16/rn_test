@@ -1,6 +1,6 @@
 import {StyleSheet, FlatList, View, Text} from 'react-native';
 import React from 'react';
-import {Todo} from '../../models/todoModels/Todo';
+import {Todo} from '../models/Todo';
 import Row from './Row';
 
 interface TableProps {
