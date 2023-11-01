@@ -8,6 +8,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from './src/pages/Home';
 import TodoApp from './src/TodoApp/components';
 import WeatherApp from './src/WeatherApp/components';
+import {Colors} from './src/common/styles';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -20,7 +21,17 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: Colors.primary.p900,
+          },
+          headerTintColor: Colors.primary.light,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen
           name="Todo"
