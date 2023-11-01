@@ -1,17 +1,10 @@
-import {
-  StyleSheet,
-  TextInput,
-  Text,
-  View,
-  Pressable,
-  Keyboard,
-} from 'react-native';
+import {StyleSheet, TextInput, View, Keyboard} from 'react-native';
 import React, {useEffect, useState} from 'react';
 
 import {Todo} from '../models/Todo';
 import Table from './Table';
-import {Colors} from '../../common/styles';
 import TodoService from '../services/todoSerivce';
+import Button from '../../common/components/Button';
 
 const TodoApp = () => {
   const [input, setInput] = useState<string>('');
@@ -42,19 +35,7 @@ const TodoApp = () => {
         numberOfLines={2}
         placeholder="Enter todo here..."
       />
-      <Pressable
-        onPress={addTodo}
-        style={({pressed}) => [
-          {
-            backgroundColor: pressed
-              ? Colors.primary.p800
-              : Colors.primary.p900,
-            transform: pressed ? [{scale: 0.98}] : [{scale: 1}],
-          },
-          styles.btn,
-        ]}>
-        <Text style={styles.btnText}>Add Todo</Text>
-      </Pressable>
+      <Button title="Add Todo" style={styles.button} handlePress={addTodo} />
       <Table todos={todos} />
     </View>
   );
@@ -75,16 +56,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     textAlignVertical: 'top',
   },
-  btn: {
+  button: {
     width: '100%',
-    padding: 8,
-    borderRadius: 4,
-    marginVertical: 12,
-  },
-  btnText: {
-    color: '#f8fafc',
-    fontSize: 16,
-    fontWeight: '700',
-    textAlign: 'center',
   },
 });

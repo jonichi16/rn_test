@@ -2,7 +2,7 @@ import {StyleSheet, Text, View, Image, Switch} from 'react-native';
 import React, {useState} from 'react';
 import {Weather} from '../models/Weather';
 import {Spacing, Typography} from '../../common/styles';
-import Bounce from '../../common/components/Bounce';
+import Bounce from '../../common/components/animations/Bounce';
 
 type WeatherProps = {
   weather: Weather | null;

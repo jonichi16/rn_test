@@ -1,15 +1,8 @@
-import {
-  Keyboard,
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import {Keyboard, StyleSheet, Text, TextInput, View} from 'react-native';
 import React, {useState} from 'react';
 import {Weather} from '../models/Weather';
 import WeatherComponent from './WeatherComponent';
-import {Colors} from '../../common/styles';
+import Button from '../../common/components/Button';
 
 const WeatherApp = () => {
   const [location, setLocation] = useState<string>('');
@@ -54,19 +47,11 @@ const WeatherApp = () => {
         value={location}
         placeholder="Enter Location Here..."
       />
-      <Pressable
-        onPress={getWeather}
-        style={({pressed}) => [
-          {
-            backgroundColor: pressed
-              ? Colors.primary.p800
-              : Colors.primary.p900,
-            transform: pressed ? [{scale: 0.98}] : [{scale: 1}],
-          },
-          styles.btn,
-        ]}>
-        <Text style={styles.btnText}>Get Weather</Text>
-      </Pressable>
+      <Button
+        title="Get Weather"
+        style={styles.button}
+        handlePress={getWeather}
+      />
 
       {isLoading ? (
         <View style={styles.center}>
@@ -93,17 +78,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 4,
   },
-  btn: {
+  button: {
     width: '100%',
-    padding: 8,
-    borderRadius: 4,
-    marginVertical: 12,
-  },
-  btnText: {
-    color: '#f8fafc',
-    fontSize: 16,
-    fontWeight: '700',
-    textAlign: 'center',
   },
   center: {
     flex: 1,

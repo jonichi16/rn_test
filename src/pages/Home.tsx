@@ -1,9 +1,10 @@
-import {StyleSheet, Text, View, Pressable} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {RootStackParamList} from '../../App';
-import {Colors, Typography} from '../common/styles';
+import {Colors, Spacing, Typography} from '../common/styles';
+import Button from '../common/components/Button';
 
 type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
@@ -12,32 +13,16 @@ const Home = ({navigation}: HomeProps) => {
     <View style={styles.container}>
       <Text style={styles.header}>Welcome to SandBox</Text>
       <Text style={styles.subheader}>Enjoy different apps</Text>
-      <Pressable
-        onPress={() => navigation.navigate('Todo')}
-        style={({pressed}) => [
-          {
-            backgroundColor: pressed
-              ? Colors.primary.p800
-              : Colors.primary.p900,
-            transform: pressed ? [{scale: 0.98}] : [{scale: 1}],
-          },
-          styles.btn,
-        ]}>
-        <Text style={styles.btnText}>Go to Todo App</Text>
-      </Pressable>
-      <Pressable
-        onPress={() => navigation.navigate('Weather')}
-        style={({pressed}) => [
-          {
-            backgroundColor: pressed
-              ? Colors.primary.p800
-              : Colors.primary.p900,
-            transform: pressed ? [{scale: 0.98}] : [{scale: 1}],
-          },
-          styles.btn,
-        ]}>
-        <Text style={styles.btnText}>Go to Weather App</Text>
-      </Pressable>
+      <Button
+        title={'Go to Todo App'}
+        style={styles.button}
+        handlePress={() => navigation.navigate('Todo')}
+      />
+      <Button
+        title={'Go to Weather App'}
+        style={styles.button}
+        handlePress={() => navigation.navigate('Weather')}
+      />
     </View>
   );
 };
@@ -49,6 +34,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingHorizontal: Spacing.spacing.xs,
   },
   header: {
     ...Typography.header.xxl,
@@ -57,17 +43,9 @@ const styles = StyleSheet.create({
   subheader: {
     ...Typography.header.lg,
     color: Colors.primary.dark,
+    marginBottom: Spacing.spacing.md,
   },
-  btn: {
+  button: {
     width: '50%',
-    padding: 8,
-    borderRadius: 4,
-    marginVertical: 12,
-  },
-  btnText: {
-    color: '#f8fafc',
-    fontSize: 16,
-    fontWeight: '700',
-    textAlign: 'center',
   },
 });
