@@ -1,19 +1,21 @@
+import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import ServiceType from './service-type/ServiceType';
+import {Spacing} from '../../common/styles';
 
-const Tab = createBottomTabNavigator();
-
-const Waybill = () => {
+const ServiceType = () => {
   return (
-    <Tab.Navigator>
-      <Tab.Screen
-        name="ServiceType"
-        component={ServiceType}
-        options={{headerShown: false}}
-      />
-    </Tab.Navigator>
+    <View style={styles.container}>
+      <Text>ServiceType</Text>
+    </View>
   );
 };
 
-export default Waybill;
+export default ServiceType;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    padding: Spacing.spacing.xs,
+  },
+});
