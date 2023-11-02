@@ -1,6 +1,6 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import ServiceType from '../Waybill/components';
+import ServiceType from '../Waybill/components/service-type';
 
 export type TabParamList = {
   ServiceType: undefined;

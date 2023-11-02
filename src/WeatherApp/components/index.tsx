@@ -47,11 +47,7 @@ const WeatherApp = () => {
         value={location}
         placeholder="Enter Location Here..."
       />
-      <Button
-        title="Get Weather"
-        style={styles.button}
-        handlePress={getWeather}
-      />
+      <Button title="Get Weather" handlePress={getWeather} />
 
       {isLoading ? (
         <View style={styles.center}>
@@ -77,9 +73,6 @@ const styles = StyleSheet.create({
     padding: 8,
     borderWidth: 1,
     borderRadius: 4,
-  },
-  button: {
-    width: '100%',
   },
   center: {
     flex: 1,

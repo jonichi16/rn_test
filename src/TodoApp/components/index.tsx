@@ -35,7 +35,7 @@ const TodoApp = () => {
         numberOfLines={2}
         placeholder="Enter todo here..."
       />
-      <Button title="Add Todo" style={styles.button} handlePress={addTodo} />
+      <Button title="Add Todo" handlePress={addTodo} />
       <Table todos={todos} />
     </View>
   );
@@ -55,8 +55,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 4,
     textAlignVertical: 'top',
-  },
-  button: {
-    width: '100%',
   },
 });

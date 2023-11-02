@@ -4,17 +4,20 @@ import {Colors, Spacing, Typography} from '../styles';
 
 type ButtonProps = {
   title: string;
-  style: ViewStyle;
+  testId?: string;
+  style?: ViewStyle;
   handlePress: () => void;
 };
 
-const Button = ({title, style, handlePress}: ButtonProps) => {
+const Button = ({title, testId, style, handlePress}: ButtonProps) => {
   return (
     <Pressable
+      role="button"
+      testID={testId || 'button'}
       onPress={handlePress}
       style={({pressed}) => [
         {
-          ...style,
+          ...(style || {width: '100%'}),
           backgroundColor: pressed ? Colors.primary.p800 : Colors.primary.p900,
           transform: pressed ? [{scale: 0.98}] : [{scale: 1}],
         },
