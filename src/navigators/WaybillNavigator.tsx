@@ -1,9 +1,9 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import ServiceType from '../Waybill/components/service-type';
+import ServiceTypeNavigator from './ServiceTypeNavigator';
 
 export type TabParamList = {
-  ServiceType: undefined;
+  ServiceTypeNavigator: undefined;
 };
 
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -12,8 +12,8 @@ const Waybill = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name="ServiceType"
-        component={ServiceType}
+        name="ServiceTypeNavigator"
+        component={ServiceTypeNavigator}
         options={{headerShown: false}}
       />
     </Tab.Navigator>
