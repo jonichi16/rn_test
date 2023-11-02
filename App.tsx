@@ -9,11 +9,13 @@ import Home from './src/pages/Home';
 import TodoApp from './src/TodoApp/components';
 import WeatherApp from './src/WeatherApp/components';
 import {Colors} from './src/common/styles';
+import Waybill from './src/Waybill/components';
 
 export type RootStackParamList = {
   Home: undefined;
   Todo: undefined;
   Weather: undefined;
+  Waybill: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -42,6 +44,11 @@ const App = () => {
           name="Weather"
           component={WeatherApp}
           options={{title: 'Weather App'}}
+        />
+        <Stack.Screen
+          name="Waybill"
+          component={Waybill}
+          options={{title: 'Waybill'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

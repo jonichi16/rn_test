@@ -23,6 +23,11 @@ const Home = ({navigation}: HomeProps) => {
         style={styles.button}
         handlePress={() => navigation.navigate('Weather')}
       />
+      <Button
+        title={'Go to Waybill App'}
+        style={styles.button}
+        handlePress={() => navigation.navigate('Waybill')}
+      />
     </View>
   );
 };
