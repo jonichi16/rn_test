@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Spacing} from '../../../common/styles';
-import Button from '../../../common/components/Button';
+import Button from '../../../common/components/buttons/Button';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ServiceTypeStackParamList} from '../../../navigators/ServiceTypeNavigator';
 

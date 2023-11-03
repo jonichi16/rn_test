@@ -2,7 +2,7 @@ import {Keyboard, StyleSheet, Text, TextInput, View} from 'react-native';
 import React, {useState} from 'react';
 import {Weather} from '../models/Weather';
 import WeatherComponent from './WeatherComponent';
-import Button from '../../common/components/Button';
+import Button from '../../common/components/buttons/Button';
 
 const WeatherApp = () => {
   const [location, setLocation] = useState<string>('');

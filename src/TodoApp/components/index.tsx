@@ -4,7 +4,7 @@ import React, {useEffect, useState} from 'react';
 import {Todo} from '../models/Todo';
 import Table from './Table';
 import TodoService from '../services/todoSerivce';
-import Button from '../../common/components/Button';
+import Button from '../../common/components/buttons/Button';
 
 const TodoApp = () => {
   const [input, setInput] = useState<string>('');
