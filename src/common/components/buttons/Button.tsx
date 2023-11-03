@@ -23,7 +23,9 @@ const Button = ({title, testID, style, handlePress}: ButtonProps) => {
         },
         styles.button,
       ]}>
-      <Text style={styles.buttonText}>{title}</Text>
+      <Text testID="ButtonText" style={styles.buttonText}>
+        {title}
+      </Text>
     </Pressable>
   );
 };
@@ -32,7 +34,7 @@ export default Button;
 
 const styles = StyleSheet.create({
   button: {
-    padding: Spacing.spacing.xs,
+    padding: Spacing.spacing.sm,
     borderRadius: Spacing.spacing.xxs,
     marginVertical: Spacing.spacing.xs,
   },

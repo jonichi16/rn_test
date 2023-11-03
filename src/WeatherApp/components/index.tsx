@@ -20,6 +20,8 @@ const WeatherApp = () => {
       const response = await fetch(URL, {mode: 'cors'});
       const data = await response.json();
 
+      console.log(data);
+
       if (data.error) {
         setError(data.error.message);
         setWeather(null);
@@ -29,7 +31,7 @@ const WeatherApp = () => {
           tempFahrenheit: `${data.current.temp_f}°F`,
           condition: data.current.condition.text,
           icon: data.current.condition.icon,
-          location: `${data.location.name}, ${data.location.country}`,
+          location: `${data.location.region}, ${data.location.country}`,
         });
       }
     } catch (err) {
