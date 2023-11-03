@@ -1,14 +1,15 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+// import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {Colors, Spacing, Typography} from '../common/styles';
 import Button from '../common/components/buttons/Button';
-import {RootStackParamList} from '../navigators/AppNavigator';
+// import {RootStackParamList} from '../navigators/AppNavigator';
 
-type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
+// type HomeProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
-const Home = ({navigation}: HomeProps) => {
+// const Home = ({navigation}: HomeProps) => {
+const Home = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Welcome to SandBox</Text>
@@ -16,12 +17,14 @@ const Home = ({navigation}: HomeProps) => {
       <Button
         title={'Go to Todo App'}
         style={styles.button}
-        handlePress={() => navigation.navigate('Todo')}
+        // handlePress={() => navigation.navigate('Todo')}
+        handlePress={() => console.log('Home')}
       />
       <Button
         title={'Go to Weather App'}
         style={styles.button}
-        handlePress={() => navigation.navigate('Weather')}
+        // handlePress={() => navigation.navigate('Weather')}
+        handlePress={() => console.log('Home')}
       />
     </View>
   );

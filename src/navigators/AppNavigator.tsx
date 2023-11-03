@@ -1,26 +1,42 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {useColorScheme} from 'react-native';
+import {
+  DarkTheme,
+  DefaultTheme,
+  NavigationContainer,
+} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import {Colors} from '../common/styles';
-import Home from '../pages/Home';
 import TodoApp from '../TodoApp/components';
 import WeatherApp from '../WeatherApp/components';
+import {Colors} from '../common/styles';
+import TabIcon from '../common/components/tab-icons/TabIcon';
 
-export type RootStackParamList = {
-  Home: undefined;
+export type RootTabParamList = {
   Todo: undefined;
   Weather: undefined;
 };
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => {
+  const scheme = useColorScheme();
+
+  const tabIcon = (route, color, size) => {
+    return <TabIcon iconName={route} color={color} size={size} />;
+  };
+
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Home"
-        screenOptions={{
+    <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <Tab.Navigator
+        screenOptions={({route}) => ({
+          tabBarIcon: ({color, size}) => tabIcon(route, color, size),
+          tabBarShowLabel: false,
+          tabBarActiveTintColor: 'goldenrod',
+          tabBarInactiveTintColor: 'gray',
+          tabBarStyle: {
+            backgroundColor: Colors.primary.p900,
+          },
           headerStyle: {
             backgroundColor: Colors.primary.p900,
           },
@@ -28,19 +44,14 @@ const AppNavigator = () => {
           headerTitleStyle: {
             fontWeight: 'bold',
           },
-        }}>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen
-          name="Todo"
-          component={TodoApp}
-          options={{title: 'Todo App'}}
-        />
-        <Stack.Screen
+        })}>
+        <Tab.Screen name="Todo" component={TodoApp} options={{title: 'Todo'}} />
+        <Tab.Screen
           name="Weather"
           component={WeatherApp}
-          options={{title: 'Weather App'}}
+          options={{title: 'Weather'}}
         />
-      </Stack.Navigator>
+      </Tab.Navigator>
     </NavigationContainer>
   );
 };
