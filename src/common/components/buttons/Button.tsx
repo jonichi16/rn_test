@@ -4,16 +4,16 @@ import {Colors, Spacing, Typography} from '../../styles';
 
 type ButtonProps = {
   title: string;
-  testId?: string;
+  testID?: string;
   style?: ViewStyle;
   handlePress: () => void;
 };
 
-const Button = ({title, testId, style, handlePress}: ButtonProps) => {
+const Button = ({title, testID, style, handlePress}: ButtonProps) => {
   return (
     <Pressable
       role="button"
-      testID={testId || 'button'}
+      testID={testID || 'button'}
       onPress={handlePress}
       style={({pressed}) => [
         {
