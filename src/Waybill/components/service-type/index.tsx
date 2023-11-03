@@ -15,9 +15,8 @@ const ServiceType = ({navigation}: ServiceTypeProps) => {
     <View style={styles.container}>
       <Text>ServiceType</Text>
       <Button
-        testId="AddNewService"
+        testID="AddNewService"
         title="Add new Service Type"
-        style={styles.button}
         handlePress={() => navigation.navigate('Add')}
       />
     </View>
@@ -31,8 +30,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     padding: Spacing.spacing.xs,
-  },
-  button: {
-    width: '100%',
   },
 });
