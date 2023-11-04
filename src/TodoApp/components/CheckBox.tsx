@@ -11,7 +11,7 @@ const CheckBox = ({size, onPress}: CheckBoxProps) => {
 
   const handlePress = () => {
     setIsEnable(prevState => !prevState);
-    setTimeout(onPress, 500);
+    setTimeout(onPress, 300);
   };
 
   return (

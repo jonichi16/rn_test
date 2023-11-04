@@ -3,9 +3,9 @@ import React, {useEffect, useState} from 'react';
 
 import {Todo} from '../models/Todo';
 import TodoList from './TodoList';
-import TodoService from '../services/todoSerivce';
+import TodoService from '../services/todoService';
 import Button from '../../common/components/buttons/Button';
-import {Typography} from '../../common/styles';
+import {Spacing, Typography} from '../../common/styles';
 
 const TodoApp = () => {
   const [task, setTask] = useState<string>('');
@@ -25,13 +25,13 @@ const TodoApp = () => {
   };
 
   const addTodo = async () => {
-    if (task) {
-      await TodoService.create(task);
-
-      setTask('');
-    }
-
     Keyboard.dismiss();
+
+    if (task) {
+      setTask('');
+
+      await TodoService.create(task);
+    }
   };
 
   const updateStatus = async (id: string) => {
@@ -70,16 +70,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    padding: 16,
+    padding: Spacing.spacing.md,
   },
   inputField: {
     width: '100%',
     height: 72,
-    padding: 8,
+    padding: Spacing.spacing.xs,
     borderWidth: 1,
-    borderRadius: 4,
+    borderRadius: Spacing.spacing.xxs,
     textAlignVertical: 'top',
-    marginBottom: 8,
+    marginBottom: Spacing.spacing.xxs,
     ...Typography.body.md,
   },
   center: {
