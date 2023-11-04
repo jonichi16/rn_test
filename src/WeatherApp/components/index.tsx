@@ -28,7 +28,6 @@ const WeatherApp = () => {
       } else {
         const newWeather: Weather = {
           tempCelsius: `${data.current.temp_c}°C`,
-          tempFahrenheit: `${data.current.temp_f}°F`,
           condition: data.current.condition.text,
           icon: data.current.condition.icon,
           location: `${data.location.region}, ${data.location.country}`,
