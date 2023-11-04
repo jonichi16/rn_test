@@ -13,7 +13,7 @@ const Table = ({todos, updateStatus}: TableProps) => {
     <View style={styles.table}>
       <Row col1={'Completed?'} col2={'Title'} isLast={todos.length === 0} />
       {todos.length === 0 ? (
-        <Text style={styles.empty}>Wow! Such emptiness!</Text>
+        <Text style={styles.empty}>Nothing to do</Text>
       ) : (
         <FlatList
           data={todos}
