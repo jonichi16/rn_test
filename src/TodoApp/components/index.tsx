@@ -5,6 +5,7 @@ import {Todo} from '../models/Todo';
 import Table from './Table';
 import TodoService from '../services/todoSerivce';
 import Button from '../../common/components/buttons/Button';
+import {Typography} from '../../common/styles';
 
 const TodoApp = () => {
   const [input, setInput] = useState<string>('');
@@ -12,7 +13,7 @@ const TodoApp = () => {
 
   const addTodo = () => {
     if (input) {
-      TodoService.create({title: input});
+      TodoService.create(input);
       setTodos(TodoService.findAll());
 
       setInput('');
@@ -33,7 +34,7 @@ const TodoApp = () => {
         value={input}
         multiline={true}
         numberOfLines={2}
-        placeholder="Enter todo here..."
+        placeholder="Enter todo here"
       />
       <Button title="Add Todo" handlePress={addTodo} />
       <Table todos={todos} />
@@ -51,9 +52,11 @@ const styles = StyleSheet.create({
   },
   inputField: {
     width: '100%',
+    height: 72,
     padding: 8,
     borderWidth: 1,
     borderRadius: 4,
     textAlignVertical: 'top',
+    ...Typography.body.md,
   },
 });

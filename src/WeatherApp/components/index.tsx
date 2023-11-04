@@ -7,7 +7,7 @@ import Button from '../../common/components/buttons/Button';
 const WeatherApp = () => {
   const [location, setLocation] = useState<string>('');
   const [weather, setWeather] = useState<Weather | null>(null);
-  const [error, setError] = useState<string>('Please enter a location');
+  const [error, setError] = useState<string>('Please enter a city.');
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const getWeather = async () => {
@@ -20,10 +20,8 @@ const WeatherApp = () => {
       const response = await fetch(URL, {mode: 'cors'});
       const data = await response.json();
 
-      console.log(data);
-
       if (data.error) {
-        setError(data.error.message);
+        setError('No matching city found.');
         setWeather(null);
       } else {
         setWeather({
@@ -47,7 +45,7 @@ const WeatherApp = () => {
         style={styles.inputField}
         onChangeText={setLocation}
         value={location}
-        placeholder="Enter Location Here..."
+        placeholder="Enter City Here"
       />
       <Button title="Get Weather" handlePress={getWeather} />
 

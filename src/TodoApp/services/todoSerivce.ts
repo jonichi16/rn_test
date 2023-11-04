@@ -15,10 +15,7 @@ const findById = (id: string): Todo | undefined => {
   });
 };
 
-type Body = {
-  title: string;
-};
-const create = ({title}: Body) => {
+const create = (title: string) => {
   const newTodo = {
     id: uuidv4(),
     title: title,
