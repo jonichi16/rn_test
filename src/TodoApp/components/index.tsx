@@ -2,7 +2,7 @@ import {StyleSheet, TextInput, View, Keyboard, Text} from 'react-native';
 import React, {useEffect, useState} from 'react';
 
 import {Todo} from '../models/Todo';
-import Table from './Table';
+import TodoList from './TodoList';
 import TodoService from '../services/todoSerivce';
 import Button from '../../common/components/buttons/Button';
 import {Typography} from '../../common/styles';
@@ -58,7 +58,7 @@ const TodoApp = () => {
           <Text>Loading...</Text>
         </View>
       ) : (
-        <Table todos={todos} updateStatus={updateStatus} />
+        <TodoList todos={todos} updateStatus={updateStatus} />
       )}
     </View>
   );
@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 4,
     textAlignVertical: 'top',
+    marginBottom: 8,
     ...Typography.body.md,
   },
   center: {

@@ -14,11 +14,10 @@ const findAll = async (): Promise<Todo[]> => {
   }
 };
 
-const create = async (title: string): Promise<void> => {
+const create = async (task: string): Promise<void> => {
   const newTodo = {
     id: uuidv4(),
-    title: title,
-    isComplete: false,
+    task: task,
     date: new Date().toLocaleDateString(),
   };
 
@@ -39,7 +38,7 @@ const updateStatus = async (id: string): Promise<void> => {
     const todoIndex = todos.findIndex(todo => todo.id === id);
 
     if (todoIndex || todoIndex === 0) {
-      todos[todoIndex].isComplete = !todos[todoIndex].isComplete;
+      todos.splice(todoIndex, 1);
 
       await AsyncStorage.setItem('todos', JSON.stringify(todos));
     }
