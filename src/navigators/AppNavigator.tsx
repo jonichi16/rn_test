@@ -11,10 +11,12 @@ import TodoApp from '../TodoApp/components';
 import WeatherApp from '../WeatherApp/components';
 import {Colors} from '../common/styles';
 import TabIcon from '../common/components/tab-icons/TabIcon';
+import CanIDoIt from '../CanIDoItApp/components';
 
 export type RootTabParamList = {
   Todo: undefined;
   Weather: undefined;
+  CanIDoIt: undefined;
 };
 
 const Tab = createBottomTabNavigator();
@@ -50,6 +52,11 @@ const AppNavigator = () => {
           name="Weather"
           component={WeatherApp}
           options={{title: 'Weather'}}
+        />
+        <Tab.Screen
+          name="CanIDoIt"
+          component={CanIDoIt}
+          options={{title: 'Can I Do It?'}}
         />
       </Tab.Navigator>
     </NavigationContainer>

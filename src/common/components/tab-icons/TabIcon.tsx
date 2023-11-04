@@ -14,6 +14,8 @@ const TabIcon = ({iconName, color, size}: TabIconProps) => {
     sourceIcon = require('../../assets/images/todo.png');
   } else if (iconName === 'Weather') {
     sourceIcon = require('../../assets/images/weather.png');
+  } else if (iconName === 'CanIDoIt') {
+    sourceIcon = require('../../assets/images/doit.png');
   }
 
   return (
