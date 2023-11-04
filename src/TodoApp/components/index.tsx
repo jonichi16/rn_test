@@ -1,4 +1,4 @@
-import {StyleSheet, TextInput, View, Keyboard} from 'react-native';
+import {StyleSheet, TextInput, View, Keyboard, Text} from 'react-native';
 import React, {useEffect, useState} from 'react';
 
 import {Todo} from '../models/Todo';
@@ -8,36 +8,58 @@ import Button from '../../common/components/buttons/Button';
 import {Typography} from '../../common/styles';
 
 const TodoApp = () => {
-  const [input, setInput] = useState<string>('');
+  const [task, setTask] = useState<string>('');
   const [todos, setTodos] = useState<Todo[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const addTodo = () => {
-    if (input) {
-      TodoService.create(input);
-      setTodos(TodoService.findAll());
+  const fetchTodoData = async () => {
+    try {
+      const todoData = await TodoService.findAll();
 
-      setInput('');
+      setTodos(todoData);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const addTodo = async () => {
+    if (task) {
+      await TodoService.create(task);
+
+      setTask('');
     }
 
     Keyboard.dismiss();
   };
 
+  const updateStatus = async (id: string) => {
+    await TodoService.updateStatus(id);
+  };
+
   useEffect(() => {
-    setTodos(TodoService.findAll());
+    fetchTodoData();
   }, [todos]);
 
   return (
     <View style={styles.container}>
       <TextInput
         style={styles.inputField}
-        onChangeText={setInput}
-        value={input}
+        onChangeText={setTask}
+        value={task}
         multiline={true}
         numberOfLines={2}
         placeholder="Enter todo here"
       />
       <Button title="Add Todo" handlePress={addTodo} />
-      <Table todos={todos} />
+      {isLoading ? (
+        <View style={styles.center}>
+          <Text>Loading...</Text>
+        </View>
+      ) : (
+        <Table todos={todos} updateStatus={updateStatus} />
+      )}
     </View>
   );
 };
@@ -58,5 +80,10 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     textAlignVertical: 'top',
     ...Typography.body.md,
+  },
+  center: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

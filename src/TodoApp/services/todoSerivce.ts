@@ -1,21 +1,20 @@
 import 'react-native-get-random-values';
 import {v4 as uuidv4} from 'uuid';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {Todo} from '../models/Todo';
 
-let todoData: Todo[] = [];
-
-const findAll = (): Todo[] => {
-  return todoData;
+const findAll = async (): Promise<Todo[]> => {
+  try {
+    const data = await AsyncStorage.getItem('todos');
+    const todos = data !== null ? JSON.parse(data) : [];
+    return todos;
+  } catch (error) {
+    throw error;
+  }
 };
 
-const findById = (id: string): Todo | undefined => {
-  return todoData.find(todo => {
-    todo.id === id;
-  });
-};
-
-const create = (title: string) => {
+const create = async (title: string): Promise<void> => {
   const newTodo = {
     id: uuidv4(),
     title: title,
@@ -23,20 +22,34 @@ const create = (title: string) => {
     date: new Date().toLocaleDateString(),
   };
 
-  todoData = [...todoData, newTodo];
+  try {
+    let todos = await findAll();
+    todos = [...todos, newTodo];
+
+    await AsyncStorage.setItem('todos', JSON.stringify(todos));
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-const updateStatus = (id: string) => {
-  const todoIndex = todoData.findIndex(todo => todo.id === id);
+const updateStatus = async (id: string): Promise<void> => {
+  try {
+    let todos = await findAll();
 
-  if (todoIndex || todoIndex === 0) {
-    todoData[todoIndex].isComplete = !todoData[todoIndex].isComplete;
+    const todoIndex = todos.findIndex(todo => todo.id === id);
+
+    if (todoIndex || todoIndex === 0) {
+      todos[todoIndex].isComplete = !todos[todoIndex].isComplete;
+
+      await AsyncStorage.setItem('todos', JSON.stringify(todos));
+    }
+  } catch (error) {
+    console.log(error);
   }
 };
 
 const TodoService = {
   findAll,
-  findById,
   create,
   updateStatus,
 };

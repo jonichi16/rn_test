@@ -5,9 +5,10 @@ import Row from './Row';
 
 interface TableProps {
   todos: Todo[];
+  updateStatus: (id: string) => void;
 }
 
-const Table = ({todos}: TableProps) => {
+const Table = ({todos, updateStatus}: TableProps) => {
   return (
     <View style={styles.table}>
       <Row col1={'Completed?'} col2={'Title'} isLast={todos.length === 0} />
@@ -22,6 +23,7 @@ const Table = ({todos}: TableProps) => {
               isComplete={item.isComplete}
               title={item.title}
               isLast={index + 1 === todos.length ? true : false}
+              updateStatus={updateStatus}
             />
           )}
           keyExtractor={item => item.id}
