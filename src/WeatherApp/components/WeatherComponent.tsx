@@ -45,10 +45,12 @@ const styles = StyleSheet.create({
   },
   location: {
     ...Typography.header.xxl,
+    textAlign: 'center',
   },
   condition: {
     ...Typography.subHeader.lg,
     marginBottom: Spacing.spacing.xl,
+    textAlign: 'center',
   },
   temp: {
     ...Typography.header.xxxl,
