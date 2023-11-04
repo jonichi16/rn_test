@@ -22,15 +22,15 @@ const Tab = createBottomTabNavigator();
 const AppNavigator = () => {
   const scheme = useColorScheme();
 
-  const tabIcon = (route, color, size) => {
-    return <TabIcon iconName={route} color={color} size={size} />;
+  const setTabIcon = (iconName: string, color: string, size: number) => {
+    return <TabIcon iconName={iconName} color={color} size={size} />;
   };
 
   return (
     <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Tab.Navigator
         screenOptions={({route}) => ({
-          tabBarIcon: ({color, size}) => tabIcon(route, color, size),
+          tabBarIcon: ({color, size}) => setTabIcon(route.name, color, size),
           tabBarShowLabel: false,
           tabBarActiveTintColor: 'goldenrod',
           tabBarInactiveTintColor: 'gray',
