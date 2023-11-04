@@ -3,6 +3,8 @@ import React, {useState} from 'react';
 import {Weather} from '../models/Weather';
 import WeatherComponent from './WeatherComponent';
 import Button from '../../common/components/buttons/Button';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Spacing, Typography} from '../../common/styles';
 
 const WeatherApp = () => {
   const [location, setLocation] = useState<string>('');
@@ -24,13 +26,16 @@ const WeatherApp = () => {
         setError('No matching city found.');
         setWeather(null);
       } else {
-        setWeather({
+        const newWeather: Weather = {
           tempCelsius: `${data.current.temp_c}°C`,
           tempFahrenheit: `${data.current.temp_f}°F`,
           condition: data.current.condition.text,
           icon: data.current.condition.icon,
           location: `${data.location.region}, ${data.location.country}`,
-        });
+        };
+
+        setWeather(newWeather);
+        await AsyncStorage.setItem('weather', JSON.stringify(newWeather));
       }
     } catch (err) {
       console.log(err);
@@ -70,9 +75,11 @@ const styles = StyleSheet.create({
   },
   inputField: {
     width: '100%',
-    padding: 8,
+    padding: Spacing.spacing.xs,
     borderWidth: 1,
     borderRadius: 4,
+    marginBottom: Spacing.spacing.xxs,
+    ...Typography.body.md,
   },
   center: {
     flex: 1,
