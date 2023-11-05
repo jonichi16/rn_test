@@ -34,7 +34,7 @@ const AppNavigator = () => {
         screenOptions={({route}) => ({
           tabBarIcon: ({color, size}) => setTabIcon(route.name, color, size),
           tabBarShowLabel: false,
-          tabBarActiveTintColor: 'goldenrod',
+          tabBarActiveTintColor: 'tomato',
           tabBarInactiveTintColor: 'gray',
           tabBarStyle: {
             backgroundColor: Colors.primary.p900,
