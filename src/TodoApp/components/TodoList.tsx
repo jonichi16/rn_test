@@ -17,7 +17,7 @@ const TodoList = ({todos, updateStatus}: TodoListProps) => {
           <Text style={styles.empty}>Nothing to do</Text>
         </View>
       ) : (
-        <View style={styles.table}>
+        <View style={styles.list}>
           <FlatList
             data={todos}
             renderItem={({item}) => (
@@ -34,7 +34,7 @@ const TodoList = ({todos, updateStatus}: TodoListProps) => {
 export default TodoList;
 
 const styles = StyleSheet.create({
-  table: {
+  list: {
     flex: 1,
     width: '100%',
     marginTop: 10,
