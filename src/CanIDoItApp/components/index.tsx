@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {Todo} from '../../TodoApp/models/Todo';
 import {Weather} from '../../WeatherApp/models/Weather';
@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import MissingPage from './MissingPage';
 import Header from './Header';
 import {Spacing} from '../../common/styles';
+import Card from './Card';
 
 const CanIDoIt = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -49,6 +50,13 @@ const CanIDoIt = () => {
   return (
     <View style={styles.container}>
       <Header weather={weather} />
+      <View style={styles.list}>
+        <FlatList
+          data={todos}
+          renderItem={({item}) => <Card todo={item} />}
+          keyExtractor={item => item.id}
+        />
+      </View>
     </View>
   );
 };
@@ -60,5 +68,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     padding: Spacing.spacing.md,
+  },
+  list: {
+    flex: 1,
+    width: '100%',
+    marginTop: Spacing.spacing.lg,
   },
 });
