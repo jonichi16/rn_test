@@ -25,9 +25,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 16,
     backgroundColor: 'lightgray',
-    padding: Spacing.spacing.sm,
+    padding: Spacing.spacing.md,
     borderRadius: 5,
-    marginBottom: Spacing.spacing.sm,
+    marginBottom: Spacing.spacing.md,
   },
   task: {
     ...Typography.subHeader.md,

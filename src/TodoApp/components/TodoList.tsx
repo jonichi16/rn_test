@@ -2,7 +2,7 @@ import {StyleSheet, FlatList, View, Text} from 'react-native';
 import React from 'react';
 import {Todo} from '../models/Todo';
 import Card from './Card';
-import {Typography} from '../../common/styles';
+import {Spacing, Typography} from '../../common/styles';
 
 interface TodoListProps {
   todos: Todo[];
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   list: {
     flex: 1,
     width: '100%',
-    marginTop: 10,
+    marginTop: Spacing.spacing.lg,
   },
   center: {
     flex: 1,
