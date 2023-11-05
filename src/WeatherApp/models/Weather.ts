@@ -3,4 +3,5 @@ export type Weather = {
   condition: string;
   icon: string;
   location: string;
+  country: string;
 };

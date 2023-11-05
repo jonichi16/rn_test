@@ -14,7 +14,10 @@ const WeatherComponent = ({weather, error}: WeatherProps) => {
     <View style={styles.container}>
       {weather ? (
         <>
-          <Text style={styles.location}>{weather.location}</Text>
+          <Text
+            style={
+              styles.location
+            }>{`${weather.location}, ${weather.country}`}</Text>
           <Text style={styles.condition}>{weather.condition}</Text>
           <Bounce>
             <Image

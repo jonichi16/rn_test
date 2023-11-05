@@ -30,7 +30,8 @@ const WeatherApp = () => {
           tempCelsius: `${data.current.temp_c}°C`,
           condition: data.current.condition.text,
           icon: data.current.condition.icon,
-          location: `${data.location.region}, ${data.location.country}`,
+          location: data.location.region,
+          country: data.location.country,
         };
 
         setWeather(newWeather);
