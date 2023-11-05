@@ -35,7 +35,7 @@ const CanIDoIt = () => {
   }, [todos]);
 
   if (isLoading) {
-    return <Text style={styles.center}>Loading...</Text>;
+    return <Text style={styles.container}>Loading...</Text>;
   }
 
   if (todos.length === 0) {
@@ -47,8 +47,8 @@ const CanIDoIt = () => {
   }
 
   return (
-    <View style={styles.center}>
-      <Header weather={weather} todos={todos} />
+    <View style={styles.container}>
+      <Header weather={weather} />
     </View>
   );
 };
@@ -56,7 +56,7 @@ const CanIDoIt = () => {
 export default CanIDoIt;
 
 const styles = StyleSheet.create({
-  center: {
+  container: {
     flex: 1,
     alignItems: 'center',
     padding: Spacing.spacing.md,
