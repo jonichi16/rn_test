@@ -13,6 +13,16 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        exclusiveContent {
+            filter {
+                includeGroup "com.facebook.react"
+            }
+            forRepository {
+                maven {
+                    url "$rootDir/../node_modules/react-native/android"
+                }
+            }
+        }
     }
     dependencies {
         classpath("com.android.tools.build:gradle")
