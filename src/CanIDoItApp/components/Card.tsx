@@ -6,9 +6,10 @@ import {classifyTask} from '../helpers/status';
 
 type CardProps = {
   todo: Todo;
+  weatherCondition: string;
 };
 
-const Card = ({todo}: CardProps) => {
+const Card = ({todo, weatherCondition}: CardProps) => {
   const [status, setStatus] = useState<string>('');
 
   const getStatus = (): string => {
@@ -19,7 +20,7 @@ const Card = ({todo}: CardProps) => {
 
   useEffect(() => {
     setStatus(getStatus());
-    classifyTask(todo.task);
+    classifyTask(todo.task, weatherCondition);
   }, []);
 
   return (

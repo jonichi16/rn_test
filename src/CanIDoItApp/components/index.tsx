@@ -54,7 +54,9 @@ const CanIDoIt = () => {
       <View style={styles.list}>
         <FlatList
           data={todos}
-          renderItem={({item}) => <Card todo={item} />}
+          renderItem={({item}) => (
+            <Card todo={item} weatherCondition={weather.condition} />
+          )}
           keyExtractor={item => item.id}
         />
       </View>

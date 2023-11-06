@@ -1,6 +1,8 @@
-import {indoor, outdoor} from './words';
+import {indoor} from './indoorWords';
+import {outdoor} from './outdoorWords';
+import {weatherCondition} from './weatherCondtions';
 
-export const classifyTask = (task: string) => {
+export const classifyTask = (task: string, condition: string) => {
   let outdoorScore: number = 0;
   let indoorScore: number = 0;
 
@@ -20,5 +22,10 @@ export const classifyTask = (task: string) => {
   }
 
   console.log(outdoorScore, indoorScore);
-  console.log(outdoorScore / indoorScore);
+  console.log(weatherCondition[condition]);
+  console.log(
+    (outdoorScore / indoorScore) *
+      weatherCondition[condition] *
+      (0.2 * wordsArray.length),
+  );
 };
