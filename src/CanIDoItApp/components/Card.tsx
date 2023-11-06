@@ -2,6 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {Todo} from '../../TodoApp/models/Todo';
 import {Colors, Spacing, Typography} from '../../common/styles';
+import {classifyTask} from '../helpers/status';
 
 type CardProps = {
   todo: Todo;
@@ -18,6 +19,7 @@ const Card = ({todo}: CardProps) => {
 
   useEffect(() => {
     setStatus(getStatus());
+    classifyTask(todo.task);
   }, []);
 
   return (
@@ -49,9 +51,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: Colors.primary.dark,
     flex: 2,
-    borderLeftWidth: 2,
-    borderColor: 'gray',
-    borderStyle: 'dashed',
+    // borderLeftWidth: 2,
+    // borderColor: 'gray',
+    // borderStyle: 'dashed',
     paddingLeft: Spacing.spacing.xs,
   },
 });
