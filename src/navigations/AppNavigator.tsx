@@ -1,17 +1,13 @@
 import React from 'react';
 import {useColorScheme} from 'react-native';
-import {
-  DarkTheme,
-  DefaultTheme,
-  NavigationContainer,
-} from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import TodoApp from '../TodoApp/components';
 import WeatherApp from '../WeatherApp/components';
-import {Colors} from '../common/styles';
 import TabIcon from '../common/components/tab-icons/TabIcon';
 import CanIDoIt from '../CanIDoItApp/components';
+import {Themes} from '../common/styles';
 
 export type RootTabParamList = {
   Todo: undefined;
@@ -29,20 +25,14 @@ const AppNavigator = () => {
   };
 
   return (
-    <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <NavigationContainer
+      theme={scheme === 'dark' ? Themes.darkTheme : Themes.lightTheme}>
       <Tab.Navigator
         screenOptions={({route}) => ({
           tabBarIcon: ({color, size}) => setTabIcon(route.name, color, size),
           tabBarShowLabel: false,
           tabBarActiveTintColor: 'tomato',
           tabBarInactiveTintColor: 'gray',
-          tabBarStyle: {
-            backgroundColor: Colors.primary.p900,
-          },
-          headerStyle: {
-            backgroundColor: Colors.primary.p900,
-          },
-          headerTintColor: Colors.primary.light,
           headerTitleStyle: {
             fontWeight: 'bold',
           },

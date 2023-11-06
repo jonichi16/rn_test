@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   },
   inputField: {
     width: '100%',
-    height: 72,
+    minHeight: 72,
     padding: Spacing.spacing.xs,
     borderWidth: 1,
     borderRadius: Spacing.spacing.xxs,

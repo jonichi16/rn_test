@@ -11,14 +11,19 @@ const CheckBox = ({size, onPress}: CheckBoxProps) => {
 
   const handlePress = () => {
     setIsEnable(prevState => !prevState);
-    setTimeout(onPress, 100);
+    // setTimeout(onPress, 100);
+    onPress();
   };
 
   return (
     <View>
       <Pressable
         onPress={handlePress}
-        style={[{width: size, height: size}, styles.border, styles.container]}>
+        style={[
+          {width: size, height: size, maxHeight: size},
+          styles.border,
+          styles.container,
+        ]}>
         {isEnable ? (
           <Image
             source={require('../assets/images/done.png')}

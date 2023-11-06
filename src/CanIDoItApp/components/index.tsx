@@ -20,6 +20,7 @@ const CanIDoIt = () => {
       const weatherData = data[1][1] !== null ? JSON.parse(data[1][1]) : null;
       setTodos(todoData);
       setWeather(weatherData);
+      // await AsyncStorage.clear();
     } catch (error) {
       throw error;
     }
