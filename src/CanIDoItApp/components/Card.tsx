@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Todo} from '../../TodoApp/models/Todo';
 import {Colors, Spacing, Typography} from '../../common/styles';
 
@@ -8,9 +8,22 @@ type CardProps = {
 };
 
 const Card = ({todo}: CardProps) => {
+  const [status, setStatus] = useState<string>('');
+
+  const getStatus = (): string => {
+    const statuses: string[] = ['Imposible!', 'Maybe?', 'Possible.'];
+
+    return statuses[Math.floor(Math.random() * 3)];
+  };
+
+  useEffect(() => {
+    setStatus(getStatus());
+  }, []);
+
   return (
     <View style={styles.container}>
       <Text style={styles.task}>{todo.task}</Text>
+      <Text style={styles.status}>{status}</Text>
     </View>
   );
 };
@@ -29,6 +42,16 @@ const styles = StyleSheet.create({
   task: {
     ...Typography.subHeader.md,
     color: Colors.primary.dark,
-    flex: 7,
+    flex: 6,
+  },
+  status: {
+    ...Typography.subHeader.md,
+    textAlign: 'center',
+    color: Colors.primary.dark,
+    flex: 2,
+    borderLeftWidth: 2,
+    borderColor: 'gray',
+    borderStyle: 'dashed',
+    paddingLeft: Spacing.spacing.xs,
   },
 });
