@@ -2,7 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {Todo} from '../../TodoApp/models/Todo';
 import {Colors, Spacing, Typography} from '../../common/styles';
-import {classifyTask} from '../helpers/status';
+import {getStatus} from '../helpers/status';
 
 type CardProps = {
   todo: Todo;
@@ -12,16 +12,9 @@ type CardProps = {
 const Card = ({todo, weatherCondition}: CardProps) => {
   const [status, setStatus] = useState<string>('');
 
-  const getStatus = (): string => {
-    const statuses: string[] = ['Imposible!', 'Maybe?', 'Possible.'];
-
-    return statuses[Math.floor(Math.random() * 3)];
-  };
-
   useEffect(() => {
-    setStatus(getStatus());
-    classifyTask(todo.task, weatherCondition);
-  }, []);
+    setStatus(getStatus(todo.task, weatherCondition));
+  }, [todo.task, weatherCondition]);
 
   return (
     <View style={styles.container}>
@@ -36,7 +29,7 @@ export default Card;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    gap: 16,
+    gap: Spacing.spacing.md,
     backgroundColor: 'lightgray',
     padding: Spacing.spacing.md,
     borderRadius: 5,
@@ -45,16 +38,12 @@ const styles = StyleSheet.create({
   task: {
     ...Typography.subHeader.md,
     color: Colors.primary.dark,
-    flex: 6,
+    flex: 7,
   },
   status: {
     ...Typography.subHeader.md,
-    textAlign: 'center',
+    textAlign: 'right',
     color: Colors.primary.dark,
-    flex: 2,
-    // borderLeftWidth: 2,
-    // borderColor: 'gray',
-    // borderStyle: 'dashed',
-    paddingLeft: Spacing.spacing.xs,
+    flex: 3,
   },
 });

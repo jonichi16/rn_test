@@ -1,8 +1,8 @@
-import {indoor} from './indoorWords';
-import {outdoor} from './outdoorWords';
-import {weatherCondition} from './weatherCondtions';
+import {indoor} from '../constants/indoorWords';
+import {outdoor} from '../constants/outdoorWords';
+import {badWeather, moderateWeather} from '../constants/weatherCondtions';
 
-export const classifyTask = (task: string, condition: string) => {
+const classifyTask = (task: string): number => {
   let outdoorScore: number = 0;
   let indoorScore: number = 0;
 
@@ -15,17 +15,36 @@ export const classifyTask = (task: string, condition: string) => {
       outdoorScore += 100;
     } else if (indoor.includes(word)) {
       indoorScore += 100;
-    } else {
-      outdoorScore += 50;
-      indoorScore += 50;
     }
   }
 
-  console.log(outdoorScore, indoorScore);
-  console.log(weatherCondition[condition]);
-  console.log(
-    (outdoorScore / indoorScore) *
-      weatherCondition[condition] *
-      (0.2 * wordsArray.length),
-  );
+  // return the ratio between outdoor and indoor
+  // if the ratio is less than 1, then it is indoor, otherwise outdoor
+  return outdoorScore / indoorScore;
+};
+
+export const getStatus = (task: string, weather: string): string => {
+  const outdoorIndoorRatio = classifyTask(task);
+
+  const weatherCondition: string = badWeather.includes(weather)
+    ? 'BAD'
+    : moderateWeather.includes(weather)
+    ? 'MODERATE'
+    : 'GOOD';
+
+  if (Number.isNaN(outdoorIndoorRatio)) {
+    return 'Maybe?';
+  } else if (outdoorIndoorRatio >= 1) {
+    switch (weatherCondition) {
+      case 'BAD':
+        return 'Impossible!';
+      case 'GOOD':
+        return 'Possible.';
+      case 'MODERATE':
+      default:
+        return 'Maybe?';
+    }
+  } else {
+    return 'Possible.';
+  }
 };
