@@ -28,7 +28,7 @@ const TodoApp = () => {
     Keyboard.dismiss();
 
     if (task.trim()) {
-      await TodoService.create(task);
+      await TodoService.create(task.trim());
     }
 
     setTask('');
