@@ -27,11 +27,11 @@ const TodoApp = () => {
   const addTodo = async () => {
     Keyboard.dismiss();
 
-    if (task) {
-      setTask('');
-
+    if (task.trim()) {
       await TodoService.create(task);
     }
+
+    setTask('');
   };
 
   const updateStatus = async (id: string) => {
