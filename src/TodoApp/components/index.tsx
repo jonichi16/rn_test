@@ -1,46 +1,13 @@
-import {StyleSheet, TextInput, View, Keyboard, Text} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import {StyleSheet, TextInput, View, Text} from 'react-native';
+import React from 'react';
 
-import {Todo} from '../models/Todo';
 import TodoList from './TodoList';
-import TodoService from '../services/todoService';
 import Button from '../../common/components/buttons/Button';
 import {Spacing, Typography} from '../../common/styles';
+import useTodo from '../hooks/useTodo';
 
 const TodoApp = () => {
-  const [task, setTask] = useState<string>('');
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  const fetchTodoData = async () => {
-    try {
-      const todoData = await TodoService.findAll();
-
-      setTodos(todoData);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const addTodo = async () => {
-    Keyboard.dismiss();
-
-    if (task.trim()) {
-      await TodoService.create(task.trim());
-    }
-
-    setTask('');
-  };
-
-  const updateStatus = async (id: string) => {
-    await TodoService.updateStatus(id);
-  };
-
-  useEffect(() => {
-    fetchTodoData();
-  }, [todos]);
+  const {todos, task, setTask, isLoading, addTodo, updateStatus} = useTodo();
 
   return (
     <View style={styles.container}>
