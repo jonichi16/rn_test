@@ -32,7 +32,7 @@ export const getStatus = (task: string, weather: string): string => {
     ? 'MODERATE'
     : 'GOOD';
 
-  if (Number.isNaN(outdoorIndoorRatio)) {
+  if (Number.isNaN(outdoorIndoorRatio) || outdoorIndoorRatio === 1) {
     return 'Maybe?';
   } else if (outdoorIndoorRatio >= 1) {
     switch (weatherCondition) {

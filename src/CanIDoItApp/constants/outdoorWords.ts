@@ -6,6 +6,7 @@ export const outdoor: string[] = [
   'park',
   'go',
   'run',
+  'around',
   'running',
   'runs',
   'cafe',
