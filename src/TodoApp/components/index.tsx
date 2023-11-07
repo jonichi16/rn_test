@@ -5,14 +5,16 @@ import TodoList from './TodoList';
 import Button from '../../common/components/buttons/Button';
 import {Spacing, Typography} from '../../common/styles';
 import useTodo from '../hooks/useTodo';
+import {useTheme} from '@react-navigation/native';
 
 const TodoApp = () => {
   const {todos, task, setTask, isLoading, addTodo, updateStatus} = useTodo();
+  const {colors} = useTheme();
 
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.inputField}
+        style={[{borderColor: colors.border}, styles.inputField]}
         onChangeText={setTask}
         value={task}
         multiline={true}

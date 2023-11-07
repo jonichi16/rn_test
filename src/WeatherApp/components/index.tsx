@@ -4,15 +4,17 @@ import WeatherComponent from './WeatherComponent';
 import Button from '../../common/components/buttons/Button';
 import {Spacing, Typography} from '../../common/styles';
 import useWeather from '../hooks/useWeather';
+import {useTheme} from '@react-navigation/native';
 
 const WeatherApp = () => {
   const {setLocation, location, getWeather, isLoading, weather, error} =
     useWeather();
+  const {colors} = useTheme();
 
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.inputField}
+        style={[{borderColor: colors.border}, styles.inputField]}
         onChangeText={setLocation}
         value={location}
         placeholder="Enter City Here"

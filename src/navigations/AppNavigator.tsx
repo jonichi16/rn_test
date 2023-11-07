@@ -7,7 +7,7 @@ import TodoApp from '../TodoApp/components';
 import WeatherApp from '../WeatherApp/components';
 import TabIcon from '../common/components/tab-icons/TabIcon';
 import CanIDoIt from '../CanIDoItApp/components';
-import {Themes} from '../common/styles';
+import {Colors, Themes} from '../common/styles';
 
 export type RootTabParamList = {
   Todo: undefined;
@@ -35,6 +35,7 @@ const AppNavigator = () => {
           tabBarInactiveTintColor: 'gray',
           headerTitleStyle: {
             fontWeight: 'bold',
+            color: Colors.primary.light,
           },
         })}>
         <Tab.Screen name="Todo" component={TodoApp} options={{title: 'Todo'}} />
