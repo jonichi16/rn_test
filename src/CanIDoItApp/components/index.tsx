@@ -1,40 +1,13 @@
 import {FlatList, StyleSheet, Text, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {Todo} from '../../TodoApp/models/Todo';
-import {Weather} from '../../WeatherApp/models/Weather';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React from 'react';
 import MissingPage from './MissingPage';
 import Header from './Header';
 import {Spacing} from '../../common/styles';
 import Card from './Card';
+import useTodosWeather from '../hooks/useTodosWeather';
 
 const CanIDoIt = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const [weather, setWeather] = useState<Weather | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  const fetchData = async () => {
-    try {
-      const data = await AsyncStorage.multiGet(['todos', 'weather']);
-      const todoData = data[0][1] !== null ? JSON.parse(data[0][1]) : [];
-      const weatherData = data[1][1] !== null ? JSON.parse(data[1][1]) : null;
-      setTodos(todoData);
-      setWeather(weatherData);
-      // await AsyncStorage.clear();
-    } catch (error) {
-      throw error;
-    }
-  };
-
-  useEffect(() => {
-    try {
-      fetchData();
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [todos]);
+  const {todos, weather, isLoading} = useTodosWeather();
 
   if (isLoading) {
     return <Text style={styles.container}>Loading...</Text>;

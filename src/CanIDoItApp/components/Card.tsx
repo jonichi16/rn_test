@@ -1,8 +1,8 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Todo} from '../../TodoApp/models/Todo';
 import {Colors, Spacing, Typography} from '../../common/styles';
-import {getStatus} from '../helpers/status';
+import useStatus from '../hooks/useStatus';
 
 type CardProps = {
   todo: Todo;
@@ -10,11 +10,7 @@ type CardProps = {
 };
 
 const Card = ({todo, weatherCondition}: CardProps) => {
-  const [status, setStatus] = useState<string>('');
-
-  useEffect(() => {
-    setStatus(getStatus(todo.task, weatherCondition));
-  }, [todo.task, weatherCondition]);
+  const status = useStatus(todo.task, weatherCondition);
 
   return (
     <View style={styles.container}>
