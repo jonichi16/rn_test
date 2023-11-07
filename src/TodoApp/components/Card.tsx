@@ -4,6 +4,8 @@ import {Todo} from '../models/Todo';
 import CheckBox from './CheckBox';
 import {Spacing, Typography} from '../../common/styles';
 import {useTheme} from '@react-navigation/native';
+import Slide from '../../common/components/animations/Slide';
+import useSlide from '../../common/hooks/useSlide';
 
 type CardProps = {
   todo: Todo;
@@ -12,12 +14,20 @@ type CardProps = {
 
 const Card = ({todo, updateStatus}: CardProps) => {
   const {colors} = useTheme();
+  const {slideToRight} = useSlide();
+
+  const onPress = () => {
+    slideToRight().start(() => updateStatus(todo.id));
+    // updateStatus(todo.id);
+  };
 
   return (
-    <View style={[{backgroundColor: colors.primary}, styles.container]}>
-      <CheckBox size={24} onPress={() => updateStatus(todo.id)} />
-      <Text style={[{color: colors.text}, styles.task]}>{todo.task}</Text>
-    </View>
+    <Slide>
+      <View style={[{backgroundColor: colors.primary}, styles.container]}>
+        <CheckBox size={24} onPress={onPress} />
+        <Text style={[{color: colors.text}, styles.task]}>{todo.task}</Text>
+      </View>
+    </Slide>
   );
 };
 
